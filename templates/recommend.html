@@ -2,18 +2,23 @@
 <html>
 <head>
     <title>Recommendations</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
 
 <h1>Recommended for you</h1>
 
-<ul>
-{% for item in suggestions %}
-    <li>{{ item }}</li>
-{% endfor %}
-</ul>
+{% if suggestions %}
+    <ul>
+    {% for item in suggestions %}
+        <li>{{ item }}</li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No recommendations yet. Add items to your cart first.</p>
+{% endif %}
 
-<a href="/">Back</a>
+<a href="{{ url_for('home') }}">Back</a>
 
 </body>
 </html>
