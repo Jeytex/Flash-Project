@@ -1,14 +1,18 @@
 from flask import Flask, redirect, render_template, request, session, url_for
 
+import psycopg2
+import os
+
+DATABASE_URL = os.environ.get("DATABASE_URL")
+
+conn = psycopg2.connect(DATABASE_URL)
+cursor = conn.cursor()
 
 app = Flask(__name__)
 
-# Flask uses this key to keep session data secure.
-# For a real project, use a long random value instead.
-app.secret_key = "replace_this_with_a_random_secret"
+app.secret_key = "9ae4673a88e2aeb6fe63ffb2fef9b1c294e5dba90988c579ab521040b3d40779"
 
 
-# These are the products shown on the home page.
 products = [
     {"name": "Mobile", "price": 10000},
     {"name": "Laptop", "price": 50000},
@@ -17,7 +21,6 @@ products = [
 
 
 def get_cart():
-    """Get the cart from the browser session."""
     if "cart" not in session:
         session["cart"] = []
 
@@ -25,12 +28,10 @@ def get_cart():
 
 
 def save_cart(cart):
-    """Save the latest cart back into the browser session."""
     session["cart"] = cart
 
 
 def summarize_cart(cart):
-    """Group repeated cart items and count their quantity."""
     cart_summary = []
 
     for item in cart:
@@ -54,7 +55,6 @@ def summarize_cart(cart):
 
 
 def calculate_total(cart):
-    """Add the price of every item in the cart."""
     total = 0
 
     for item in cart:
