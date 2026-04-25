@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Recommendations</title>
+</head>
+<body>
+
+<h1>Recommended for you</h1>
+
+<ul>
+{% for item in suggestions %}
+    <li>{{ item }}</li>
+{% endfor %}
+</ul>
+
+<a href="/">Back</a>
+
+</body>
+</html>

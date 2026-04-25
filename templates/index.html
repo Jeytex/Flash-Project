@@ -1,13 +1,28 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Flask Demo</title>
-    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <title>Store</title>
 </head>
 <body>
 
-<h1>Welcome to Flask Demo 🚀</h1>
-<p>This is your first Flask app.</p>
+<h1>Products</h1>
+
+{% for product in products %}
+    <form action="/add" method="POST">
+        <p>{{ product.name }} - ₹{{ product.price }}</p>
+        <input type="hidden" name="product" value="{{ product.name }}">
+        <button type="submit">Add to Cart</button>
+    </form>
+{% endfor %}
+
+<h2>Cart</h2>
+<ul>
+{% for item in cart %}
+    <li>{{ item.name }}</li>
+{% endfor %}
+</ul>
+
+<a href="/recommend">See Recommendations</a>
 
 </body>
 </html>
