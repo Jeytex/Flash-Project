@@ -1,21 +1,29 @@
 <!DOCTYPE html>
 <html>
-    <head>
-        <title>Login</title>
-    </head>
-    <body>
-        <H1>Temporary Ecom Website</H1>
-        <div class="box">       
-            <center>   
-            <form class="whit">
-                <h2 style="font-family: Arial; font-size: 50px; padding-top:20px;">Login</h2><br>  <br>
+<head>
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
 
-                Username <input type="text" size="20px" placeholder="Enter your username" style="font-size: 20px;"><br><br>
-                Password <input type="password" size="20px" placeholder="Enter your password" style="font-size: 20px;"><br><br>
-                <input type="submit" value="Login" style="font-size: 20px; padding: 10px 30px; border-radius: 20px; background-color:green;">
-                <br><br><br>
-            </form>
-        </center>
-        </div>
-    </body>
+<h1>Temporary Ecom Website</h1>
+<h2>Login</h2>
+
+<form>
+    <p>
+        <input type="text" placeholder="Enter your username">
+    </p>
+
+    <p>
+        <input type="password" placeholder="Enter your password">
+    </p>
+
+    <button type="submit">Login</button>
+</form>
+
+<br>
+
+<a href="{{ url_for('home') }}">Back to Home</a>
+
+</body>
 </html>

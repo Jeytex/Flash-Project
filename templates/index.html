@@ -6,41 +6,44 @@
 </head>
 <body>
 
-<h1>Products</h1>
+<div class="card">
+    <h1>Products</h1>
 
-{% for product in products %}
-    <form action="{{ url_for('add_to_cart') }}" method="POST">
-        <p>{{ product.name }} - ₹{{ product.price }}</p>
-        <input type="hidden" name="product" value="{{ product.name }}">
-        <button type="submit">Add to Cart</button>
-    </form>
-{% endfor %}
-
-<h2>Cart</h2>
-{% if cart %}
-    <ul>
-    {% for item in cart %}
-        <li>{{ item.quantity }} × {{ item.name }} - ₹{{ item.price }} each</li>
+    {% for product in products %}
+        <form action="{{ url_for('add_to_cart') }}" method="POST">
+            <p>{{ product.name }} - ₹{{ product.price }}</p>
+            <input type="hidden" name="product" value="{{ product.name }}">
+            <button type="submit">Add to Cart</button>
+        </form>
     {% endfor %}
-    </ul>
-    <p><strong>Total items:</strong> {{ cart | sum(attribute='quantity') }}</p>
-    <p><strong>Total cost:</strong> ₹{{ total }}</p>
-    <form action="{{ url_for('clear_cart') }}" method="POST" style="display:inline-block; margin-top: 10px;">
-        <button type="submit">Clear Cart</button>
-    </form>
-{% else %}
-    <p>Your cart is empty.</p>
-{% endif %}
-
-<a href="{{ url_for('recommend') }}">See Recommendations</a>
-
-<div class="bottom-button">
-    <a class="button-link" href="{{ url_for('temp67') }}">Open temp67.txt</a>
 </div>
 
-<!-- Use url_for with the name of the function, not the HTML file -->
-<button href="{{ url_for('handle_submit') }}" class="btn btn-primary">LOGIN</button>
+<div class="card">
+    <h2>Cart</h2>
 
+    {% if cart %}
+        <ul>
+            {% for item in cart %}
+                <li>{{ item.quantity }} × {{ item.name }} - ₹{{ item.price }} each</li>
+            {% endfor %}
+        </ul>
+
+        <p><strong>Total items:</strong> {{ cart | sum(attribute='quantity') }}</p>
+        <p><strong>Total cost:</strong> ₹{{ total }}</p>
+
+        <form action="{{ url_for('clear_cart') }}" method="POST">
+            <button type="submit">Clear Cart</button>
+        </form>
+    {% else %}
+        <p>Your cart is empty.</p>
+    {% endif %}
+</div>
+
+<div class="card">
+    <a href="{{ url_for('recommend') }}">See Recommendations</a>
+    <br><br>
+    <a class="button-link" href="{{ url_for('login_page') }}">Login Page</a>
+</div>
 
 </body>
 </html>
