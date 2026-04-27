@@ -123,6 +123,10 @@ def recommend():
 def temp67():
     return send_file("temp67.txt", mimetype="text/plain")
 
+@app.route('/templates')
+def other_page():
+    return render_template('login.html')
+
 
 if __name__ == "__main__":
     app.run(debug=True)

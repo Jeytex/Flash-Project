@@ -38,9 +38,9 @@
     <a class="button-link" href="{{ url_for('temp67') }}">Open temp67.txt</a>
 </div>
 
-<form action="login.html">
-    <button type="submit">LOGIN</button>
-</form>
+<!-- Use url_for with the name of the function, not the HTML file -->
+<a href="{{ url_for('login.html') }}" class="btn btn-primary">LOGIN</a>
+
 
 </body>
 </html>
