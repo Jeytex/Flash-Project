@@ -10,7 +10,7 @@
     <h1>Products</h1>
 
     {% for product in products %}
-        <form action="/add-to-cart" method="POST">
+        <form action="{{ url_for('add_to_cart') }}" method="POST">
             <p>{{ product.name }} - ₹{{ product.price }}</p>
             <input type="hidden" name="product" value="{{ product.name }}">
             <button type="submit">Add to Cart</button>
@@ -31,7 +31,7 @@
         <p><strong>Total items:</strong> {{ cart | sum(attribute='quantity') }}</p>
         <p><strong>Total cost:</strong> ₹{{ total }}</p>
 
-        <form action="/clear-cart" method="POST">
+        <form action="{{ url_for('clear_cart') }}" method="POST">
             <button type="submit">Clear Cart</button>
         </form>
     {% else %}
