@@ -6,74 +6,83 @@ app.secret_key = "simple-secret-key"
 
 PRODUCTS = [
     {
-        "name": "Rose Gold Watch",
+        "id": "him1",
+        "name": "Himanshu",
         "price": 2499,
-        "image": "https://images.unsplash.com/photo-1523170335258-f5ed11844a49?auto=format&fit=crop&w=600&q=80",
-        "recommend": "Pearl Bracelet",
-        "recommend_image": "https://images.unsplash.com/photo-1611591437281-460bfbe1220a?auto=format&fit=crop&w=600&q=80",
+        "image": "images/him1.png",
+        "recommend": "Shackles",
+        "recommend_image": "images/shackles.png",
     },
     {
-        "name": "Canvas Tote Bag",
+        "id": "him2",
+        "name": "Himanshu",
         "price": 899,
-        "image": "https://images.unsplash.com/photo-1590874103328-eac38a683ce7?auto=format&fit=crop&w=600&q=80",
-        "recommend": "Silk Scarf",
-        "recommend_image": "https://images.unsplash.com/photo-1584030373081-f37b7bb4fa8e?auto=format&fit=crop&w=600&q=80",
+        "image": "images/him2.png",
+        "recommend": "Chains",
+        "recommend_image": "images/chains.png",
     },
     {
-        "name": "Wireless Earbuds",
+        "id": "him3",
+        "name": "Himanshu",
         "price": 3499,
-        "image": "https://images.unsplash.com/photo-1606220588913-b3aacb4d2f46?auto=format&fit=crop&w=600&q=80",
-        "recommend": "Charging Case",
-        "recommend_image": "https://images.unsplash.com/photo-1603539444875-76e7684265f6?auto=format&fit=crop&w=600&q=80",
+        "image": "images/him3.png",
+        "recommend": "Auction block",
+        "recommend_image": "images/openshop.png",
     },
     {
-        "name": "Minimal Sneakers",
+        "id": "him4",
+        "name": "Himanshu",
         "price": 2799,
-        "image": "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=600&q=80",
-        "recommend": "Cotton Socks",
-        "recommend_image": "https://images.unsplash.com/photo-1586350977771-b3b0abd50c82?auto=format&fit=crop&w=600&q=80",
+        "image": "images/him4.png",
+        "recommend": "Whip",
+        "recommend_image": "images/whip.png",
     },
     {
-        "name": "Ceramic Mug",
+        "id": "him5",
+        "name": "Himanshu",
         "price": 499,
-        "image": "https://images.unsplash.com/photo-1514228742587-6b1558fcca3d?auto=format&fit=crop&w=600&q=80",
-        "recommend": "Coffee Beans",
-        "recommend_image": "https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=600&q=80",
+        "image": "images/him5.png",
+        "recommend": "Branding iron",
+        "recommend_image": "images/brandingiron.png",
     },
     {
-        "name": "Desk Lamp",
+        "id": "him6",
+        "name": "Himanshu",
         "price": 1899,
-        "image": "https://images.unsplash.com/photo-1507473885765-e6ed057f782c?auto=format&fit=crop&w=600&q=80",
-        "recommend": "Notebook Set",
-        "recommend_image": "https://images.unsplash.com/photo-1531346878377-a5be20888e57?auto=format&fit=crop&w=600&q=80",
+        "image": "images/him6.png",
+        "recommend": "Slave ship",
+        "recommend_image": "images/slavefood.png",
     },
     {
-        "name": "Cotton Hoodie",
+        "id": "him7",
+        "name": "Himanshu",
         "price": 2199,
-        "image": "https://images.unsplash.com/photo-1556821840-3a63f95609a7?auto=format&fit=crop&w=600&q=80",
-        "recommend": "Denim Cap",
-        "recommend_image": "https://images.unsplash.com/photo-1521369909029-2afed882baee?auto=format&fit=crop&w=600&q=80",
+        "image": "images/him7.png",
+        "recommend": "Cotton sack",
+        "recommend_image": "images/sack.png",
     },
     {
-        "name": "Scented Candle",
+        "id": "him8",
+        "name": "Himanshu",
         "price": 699,
-        "image": "https://images.unsplash.com/photo-1603006905003-be475563bc59?auto=format&fit=crop&w=600&q=80",
-        "recommend": "Room Diffuser",
-        "recommend_image": "https://images.unsplash.com/photo-1616077167599-cad3639f9cbd?auto=format&fit=crop&w=600&q=80",
+        "image": "images/him8.png",
+        "recommend": "Slave bell",
+        "recommend_image": "images/slavebell.png",
     },
     {
-        "name": "Leather Journal",
+        "id": "him9",
+        "name": "Himanshu",
         "price": 1199,
-        "image": "https://images.unsplash.com/photo-1531346680769-a1d79b57de5c?auto=format&fit=crop&w=600&q=80",
-        "recommend": "Fine Pen",
-        "recommend_image": "https://images.unsplash.com/photo-1583485088034-697b5bc54ccd?auto=format&fit=crop&w=600&q=80",
+        "image": "images/him9.png",
+        "recommend": "Iron collar",
+        "recommend_image": "images/neckyoke.png",
     },
 ]
 
 
-def find_product(product_name):
+def find_product(product_id):
     for product in PRODUCTS:
-        if product["name"] == product_name:
+        if product["id"] == product_id:
             return product
     return None
 
@@ -86,10 +95,10 @@ def save_cart(cart):
     session["cart"] = cart
 
 
-def get_cart_count(product_name):
+def get_cart_count(product_id):
     count = 0
-    for item_name in get_cart():
-        if item_name == product_name:
+    for item_id in get_cart():
+        if item_id == product_id:
             count = count + 1
     return count
 
@@ -98,9 +107,10 @@ def get_cart_items():
     cart_items = []
 
     for product in PRODUCTS:
-        count = get_cart_count(product["name"])
+        count = get_cart_count(product["id"])
         if count > 0:
             cart_items.append({
+                "id": product["id"],
                 "name": product["name"],
                 "price": product["price"],
                 "image": product["image"],
@@ -132,12 +142,12 @@ def products():
 
 @app.route("/add", methods=["POST"])
 def add_to_cart():
-    product_name = request.form.get("product")
-    product = find_product(product_name)
+    product_id = request.form.get("product")
+    product = find_product(product_id)
 
     if product:
         cart = get_cart()
-        cart.append(product["name"])
+        cart.append(product["id"])
         save_cart(cart)
 
     return redirect(url_for("products"))
@@ -145,11 +155,11 @@ def add_to_cart():
 
 @app.route("/remove", methods=["POST"])
 def remove_from_cart():
-    product_name = request.form.get("product")
+    product_id = request.form.get("product")
     cart = get_cart()
 
-    if product_name in cart:
-        cart.remove(product_name)
+    if product_id in cart:
+        cart.remove(product_id)
         save_cart(cart)
 
     return redirect(url_for("products"))
@@ -174,19 +184,19 @@ def clear_cart():
 def recommendations():
     suggestions = []
 
-    for product_name in get_cart():
-        product = find_product(product_name)
+    for product_id in get_cart():
+        product = find_product(product_id)
         if product:
             suggestion = {
                 "because": product["name"],
                 "name": product["recommend"],
-                "image": product["recommend_image"],
+                "image": url_for("static", filename=product["recommend_image"]),
             }
 
             if suggestion not in suggestions:
                 suggestions.append(suggestion)
 
-    return render_template("recommendations.html", suggestions=suggestions)
+    return render_template("recommend.html", suggestions=suggestions)
 
 
 @app.route("/login")
