@@ -1,4 +1,4 @@
-from flask import Flask, redirect, render_template, request, session, url_for
+from flask import Flask, redirect, render_template, request, send_file, session, url_for
 
 import psycopg2
 import os
@@ -117,6 +117,11 @@ def recommend():
             suggestions.append("Mouse")
 
     return render_template("recommend.html", suggestions=suggestions)
+
+
+@app.route("/temp67.txt")
+def temp67():
+    return send_file("temp67.txt", mimetype="text/plain")
 
 
 if __name__ == "__main__":
