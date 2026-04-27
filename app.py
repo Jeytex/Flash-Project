@@ -26,8 +26,8 @@ PRODUCTS = [
         "name": "Himanshu",
         "price": 3499,
         "image": "images/him3.png",
-        "recommend": "Auction block",
-        "recommend_image": "images/openshop.png",
+        "recommend": "Cotton Picking gloves",
+        "recommend_image": "images/gloves.png",
     },
     {
         "id": "him4",
@@ -50,7 +50,7 @@ PRODUCTS = [
         "name": "Himanshu",
         "price": 1899,
         "image": "images/him6.png",
-        "recommend": "Slave ship",
+        "recommend": "Slave food",
         "recommend_image": "images/slavefood.png",
     },
     {
