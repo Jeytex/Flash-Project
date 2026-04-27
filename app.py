@@ -1,26 +1,29 @@
 from flask import Flask, redirect, render_template, request, send_file, session, url_for
-import psycopg2
-import os
-
-DATABASE_URL = os.environ.get(
-    "DATABASE_URL",
-    "postgresql://flash_db_q6or_user:TPSwjITcZzsFyhARnGUgCMVPlarxU6Nd@dpg-d7mi23hj2pic73cbopj0-a.oregon-postgres.render.com/flash_db_q6or"
-)
-
-# ✅ Connect with SSL (required for Render)
-conn = psycopg2.connect(DATABASE_URL, sslmode="require")
-cursor = conn.cursor()
 
 app = Flask(__name__)
 app.secret_key = "9ae4673a88e2aeb6fe63ffb2fef9b1c294e5dba90988c579ab521040b3d40779"
 
 
-# ---------------- PRODUCTS ----------------
-products = [
-    {"name": "Mobile", "price": 10000},
-    {"name": "Laptop", "price": 50000},
-    {"name": "Headphones", "price": 2000},
-]
+# ---------------- FAKE DATABASE ----------------
+class FakeDatabase:
+    def __init__(self):
+        self.products = [
+            {"name": "Mobile", "price": 10000},
+            {"name": "Laptop", "price": 50000},
+            {"name": "Headphones", "price": 2000},
+        ]
+
+    def get_products(self):
+        return self.products
+
+    def find_product(self, product_name):
+        for product in self.products:
+            if product["name"] == product_name:
+                return product
+        return None
+
+
+db = FakeDatabase()
 
 
 # ---------------- CART LOGIC ----------------
@@ -63,10 +66,7 @@ def calculate_total(cart):
 
 
 def find_product(product_name):
-    for product in products:
-        if product["name"] == product_name:
-            return product
-    return None
+    return db.find_product(product_name)
 
 
 # ---------------- ROUTES ----------------
@@ -78,7 +78,7 @@ def home():
 
     return render_template(
         "index.html",
-        products=products,
+        products=db.get_products(),
         cart=cart_summary,
         total=total,
     )
