@@ -122,9 +122,11 @@ def temp67():
     return send_file("temp67.txt", mimetype="text/plain")
 
 
-@app.route("/templates")
-def other_page():
-    return render_template("login.html")
+@app.route('/templates', methods=['POST'])
+def handle_submit():
+    # Process logic here
+    return render_template('other.html')
+
 
 
 if __name__ == "__main__":
