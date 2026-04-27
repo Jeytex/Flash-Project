@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% set title = "Products" %}
+
+{% block content %}
+<section class="center-text">
+    <h1>Products</h1>
+    <p>Choose from 9 aesthetic items. Each product has add and remove cart buttons.</p>
+</section>
+
+<section class="product-grid">
+    {% for product in products %}
+    <div class="box product-card">
+        <img src="{{ product.image }}" alt="{{ product.name }}">
+        <h2>{{ product.name }}</h2>
+        <p class="price">Rs. {{ product.price }}</p>
+
+        <div class="button-row">
+            <form action="{{ url_for('add_to_cart') }}" method="POST">
+                <input type="hidden" name="product" value="{{ product.name }}">
+                <button type="submit">Add to Cart</button>
+            </form>
+
+            <form action="{{ url_for('remove_from_cart') }}" method="POST">
+                <input type="hidden" name="product" value="{{ product.name }}">
+                <button class="button-light" type="submit">Remove</button>
+            </form>
+        </div>
+    </div>
+    {% endfor %}
+</section>
+
+<div class="center-text page-actions">
+    <a class="button" href="{{ url_for('cart') }}">View Cart</a>
+    <a class="button button-light" href="{{ url_for('recommendations') }}">See Recommendations</a>
+</div>
+{% endblock %}

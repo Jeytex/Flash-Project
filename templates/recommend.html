@@ -1,26 +1,26 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Recommendations</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
+{% extends "base.html" %}
+{% set title = "Recommendations" %}
 
-<h1>Recommended for You</h1>
+{% block content %}
+<section class="center-text">
+    <h1>Recommended For You</h1>
+    <p>Simple product ideas based on what you added to your cart.</p>
+</section>
 
-{% if suggestions %}
-    <ul>
+<section class="simple-grid">
+    {% if suggestions %}
         {% for item in suggestions %}
-            <li>{{ item }}</li>
+        <div class="box recommendation-card">
+            <img src="{{ item.image }}" alt="{{ item.name }}">
+            <h2>Since you added {{ item.because }}, we recommend {{ item.name }}.</h2>
+        </div>
         {% endfor %}
-    </ul>
-{% else %}
-    <p>No recommendations yet. Add items to your cart first.</p>
-{% endif %}
-
-<br>
-
-<a href="/">Back to Home</a>
-
-</body>
-</html>
+    {% else %}
+        <div class="box empty-box">
+            <h2>No recommendations yet</h2>
+            <p>Add an item to your cart and come back here.</p>
+            <a class="button" href="{{ url_for('products') }}">Shop Products</a>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}

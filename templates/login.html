@@ -1,29 +1,19 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Login</title>
-    <link rel="stylesheet" href="/static/style.css">
-</head>
-<body>
+{% extends "base.html" %}
+{% set title = "Login" %}
 
-<h1>Temporary Ecom Website</h1>
-<h2>Login</h2>
+{% block content %}
+<section class="login-section">
+    <form class="box login-box">
+        <h1>Login</h1>
+        <p>Enter your details to continue shopping.</p>
 
-<form>
-    <p>
-        <input type="text" placeholder="Enter your username">
-    </p>
+        <label for="username">Username or Email</label>
+        <input id="username" type="text" placeholder="you@example.com">
 
-    <p>
-        <input type="password" placeholder="Enter your password">
-    </p>
+        <label for="password">Password</label>
+        <input id="password" type="password" placeholder="Password">
 
-    <button type="submit">Login</button>
-</form>
-
-<br>
-
-<a href="/">Back to Home</a>
-
-</body>
-</html>
+        <button type="submit">Login</button>
+    </form>
+</section>
+{% endblock %}
