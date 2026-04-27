@@ -4,9 +4,6 @@ app = Flask(__name__)
 app.secret_key = "OpbP840kvNkRgRWPa36VF4UDZGZMlcQr10V-y11lEac"
 
 
-# ---------------------------
-# Products
-# ---------------------------
 PRODUCTS = [
     {"name": "Mobile", "price": 10000},
     {"name": "Laptop", "price": 50000},
@@ -21,9 +18,6 @@ def get_product(product_name):
     return None
 
 
-# ---------------------------
-# Cart helpers
-# ---------------------------
 def get_cart():
     return session.get("cart", [])
 
@@ -60,10 +54,6 @@ def calculate_total(cart):
         total += item["price"]
     return total
 
-
-# ---------------------------
-# Routes
-# ---------------------------
 @app.route("/")
 def home():
     cart = get_cart()
@@ -110,7 +100,6 @@ def recommend():
         elif item["name"] == "Headphones":
             suggestions.append("Headphone Case")
 
-    # remove duplicates while keeping order
     suggestions = list(dict.fromkeys(suggestions))
 
     return render_template("recommend.html", suggestions=suggestions)
