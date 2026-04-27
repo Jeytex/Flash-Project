@@ -1,7 +1,7 @@
 from flask import Flask, redirect, render_template, request, session, url_for
 
 app = Flask(__name__)
-app.secret_key = "replace_this_with_a_random_secret_key"
+app.secret_key = "OpbP840kvNkRgRWPa36VF4UDZGZMlcQr10V-y11lEac"
 
 
 # ---------------------------
