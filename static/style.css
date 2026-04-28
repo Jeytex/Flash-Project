@@ -20,6 +20,31 @@ header a, header button{
 color:white;
 }
 
+header nav a,
+header nav button{
+background:rgba(255,255,255,0.16);
+border:1px solid rgba(255,255,255,0.22);
+border-radius:12px;
+box-shadow:0 6px 14px rgba(80,20,20,0.22);
+color:white;
+line-height:1;
+padding:10px 14px;
+transition:background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+header nav a:hover,
+header nav button:hover,
+header nav a:focus-visible,
+header nav button:focus-visible{
+background:rgba(255,255,255,0.26);
+box-shadow:0 8px 18px rgba(80,20,20,0.28);
+transform:translateY(-1px);
+}
+
+header nav button{
+font:inherit;
+}
+
 nav{
 display:flex;
 gap:15px;

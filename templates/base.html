@@ -3,15 +3,15 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>{{ title or "Simple Shop" }}</title>
+    <title>{{ title or "Qubit x Store" }}</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
     {% if session.get("logged_in") %}
     <header>
-        <a href="{{ url_for('products') }}">Simple Shop</a>
+        <a href="{{ url_for('products') }}">Qubit x Store</a>
         <nav>
-            <a href="{{ url_for('products') }}">Products</a>
+            <a href="{{ url_for('products') }}">Our Products</a>
             <a href="{{ url_for('cart') }}">Cart</a>
             <a href="{{ url_for('shrek') }}">Shrek AI</a>
             <form action="{{ url_for('logout') }}" method="post">
