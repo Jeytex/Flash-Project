@@ -6,18 +6,51 @@ app.secret_key = "simple-secret-key"
 
 
 PRODUCTS = [
-    {"id": "laptop", "name": "ASUS Vivobook", "price": 45000, "image": "images/laptop1.jpg"},
-    
-    {"id": "phone", "name": "Samsung Galaxy S26", "price": 18000, "image": "images/mobile1.jpg"},
-    {"id": "camera", "name": "Sony AES Digital Camera", "price": 32000, "image": "images/camera1.jpg"},
-    {"id": "tv", "name": "TCL 75inch LED", "price": 28000, "image": "images/tv.jpg"},
-    {"id": "camera_2", "name": "Kodak Digital Camera", "price": 42000, "image": "images/camera2.jpg"},
-    {"id": "ps5", "name": "PS5", "price": 48000, "image": "images/ps5.jpg"},
-    {"id": "laptop2", "name": "Macbook Air M4", "price": 82000, "image": "images/laptop2.jpg"},
-    {"id": "laptop3", "name": "Lenovo Legion", "price": 111400, "image": "images/laptop3.jpg"},
-    {"id": "phone2", "name": "iPhone 17", "price": 89000, "image": "images/mobile2.jpg"},
+    {
+        "id": "laptop",
+        "name": "ASUS Vivobook",
+        "price": 45000,
+        "image": "images/laptop1.jpg",
+        "recommendations": [
+            {"name": "Laptop Keyboard", "image": "images/laptopkeyboard.jpg"},
+            {"name": "Laptop Stand", "image": "images/laptopstand.jpg"}
+        ]
+    },
 
+    {
+        "id": "phone",
+        "name": "Samsung Galaxy S26",
+        "price": 18000,
+        "image": "images/mobile1.jpg",
+        "recommendations": [
+            {"name": "Mobile Charger", "image": "images/mobilecharger.jpg"},
+            {"name": "Earphones", "image": "images/mobileearphones.jpg"}
+        ]
+    },
+
+    {
+        "id": "camera",
+        "name": "Sony AES Digital Camera",
+        "price": 32000,
+        "image": "images/camera1.jpg",
+        "recommendations": [
+            {"name": "Camera Lens", "image": "images/cameralens.jpg"},
+            {"name": "Camera Pod", "image": "images/camerapod.jpg"}
+        ]
+    },
+
+    {
+        "id": "tv",
+        "name": "TCL 75inch LED",
+        "price": 28000,
+        "image": "images/tv.jpg",
+        "recommendations": [
+            {"name": "TV Speaker", "image": "images/tvspeaker.jpg"},
+            {"name": "TV Stand", "image": "images/tvstand.jpg"}
+        ]
+    }
 ]
+
 
 
 def login_required(f):
@@ -67,13 +100,12 @@ def get_cart_items():
     return items
 
 
-def get_recommendations(pid, limit=2):
-    rec = []
-    for p in PRODUCTS:
-        if p["id"] != pid:
-            rec.append(p)
+def get_recommendations(pid):
+    product = find_product(pid)
+    if not product:
+        return []
 
-    return rec[:limit]
+    return product.get("recommendations", [])
 
 
 @app.route("/", methods=["GET","POST"])

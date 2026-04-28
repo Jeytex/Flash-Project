@@ -1,20 +1,38 @@
 {% extends "base.html" %}
-{% set title = "Products" %}
+{% set title="Products" %}
 
 {% block content %}
-<h1>Products</h1>
+
+<h1> Products </h1>
 
 <section class="products">
-    {% for product in products %}
+
+{% for product in products %}
+
     <article class="card">
-        <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}">
-        <h2>{{ product.name }}</h2>
-        <p>Rs. {{ product.price }}</p>
-        <form action="{{ url_for('add_to_cart') }}" method="post">
-            <input type="hidden" name="product" value="{{ product.id }}">
-            <button type="submit">Add to Cart</button>
+
+    <img src="{{ url_for('static', filename=product.image) }}"  alt="{{product.name}}">
+
+        <h2>
+            {{ product.name }}
+        </h2>
+
+    <p> Rs. {{product.price}} </p>
+
+        <form action="{{url_for('add_to_cart')}}" method="post">
+
+            <input type="hidden" name="product" value="{{product.id}}">
+
+        <button type="submit">
+            Add to Cart
+        </button>
+
         </form>
+
     </article>
-    {% endfor %}
+
+{% endfor %}
+
 </section>
+
 {% endblock %}

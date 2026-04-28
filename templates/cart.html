@@ -5,40 +5,44 @@
 
 {% if cart_items %}
 
-    {% for item in cart_items %}
-        <div class="cart-item">
-            <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.name }}">
-            
-            <h2>{{ item.name }}</h2>
-            <p>Qty: {{ item.quantity }}</p>
-            <p>Rs. {{ item.total }}</p>
+    <section class="cart">
+        {% for item in cart_items %}
+            <div class="cart-row">
+                <article class="cart-item">
+                    <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.name }}">
 
-            <form action="{{ url_for('remove_from_cart') }}" method="post">
-                <input type="hidden" name="product" value="{{ item.id }}">
-                <button>Remove</button>
-            </form>
+                    <div class="cart-details">
+                        <h2>{{ item.name }}</h2>
+                        <p>Qty: {{ item.quantity }}</p>
+                        <p>Rs. {{ item.total }}</p>
 
-            <!-- Recommendations -->
-            {% for rec in item.recommendations %}
-                <div class="rec-item">
-                    <img src="{{ url_for('static', filename=rec.image) }}" alt="{{ rec.name }}">
-                    <p>{{ rec.name }} - Rs. {{ rec.price }}</p>
+                        <form action="{{ url_for('remove_from_cart') }}" method="post">
+                            <input type="hidden" name="product" value="{{ item.id }}">
+                            <button type="submit">Remove</button>
+                        </form>
+                    </div>
+                </article>
 
-                    <form action="{{ url_for('add_to_cart') }}" method="post">
-                        <input type="hidden" name="product" value="{{ rec.id }}">
-                        <button>Add</button>
-                    </form>
-                </div>
-            {% endfor %}
+                <aside class="recommendations">
+                    <h3>Recommended with {{ item.name }}</h3>
 
-        </div>
-        <hr>
-    {% endfor %}
+                    <div class="recommendation-list">
+                        {% for rec in item.recommendations %}
+                            <div class="recommendation-card">
+                                <img src="{{ url_for('static', filename=rec.image) }}" alt="{{ rec.name }}">
+                                <p>{{ rec.name }}</p>
+                            </div>
+                        {% endfor %}
+                    </div>
+                </aside>
+            </div>
+        {% endfor %}
+    </section>
 
     <h2>Total: Rs. {{ total }}</h2>
 
     <form action="{{ url_for('clear_cart') }}" method="post">
-        <button>Clear Cart</button>
+        <button type="submit">Clear Cart</button>
     </form>
 
 {% else %}
