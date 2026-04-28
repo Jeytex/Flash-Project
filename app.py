@@ -7,6 +7,7 @@ app.secret_key="simple-secret-key"
 
 PRODUCTS = [
 
+<<<<<<< HEAD
 {"id":"laptop","name":"ASUS Vivobook","price":45000,"image":"images/laptop1.jpg"},
 {"id":"phone","name":"Samsung Galaxy S26","price":18000,"image":"images/mobile1.jpg"},
 {"id":"camera","name":"Sony AES Digital Camera","price":32000,"image":"images/camera1.jpg"},
@@ -28,6 +29,19 @@ PRODUCTS = [
 def login_required(f):
     @wraps(f)
     def check(*args, **kwargs):
+=======
+    {"id": "laptop", "name": "ASUS Vivobook", "price": 45000, "image": "images/laptop1.jpg"},
+    {"id": "phone", "name": "Samsung Galaxy S26", "price": 18000, "image": "images/mobile1.jpg"},
+    {"id": "camera", "name": "Sony AES Digital Camera", "price": 32000, "image": "images/camera1.jpg"},
+    {"id": "tv", "name" : "TCL 75inch LED", "price": 28000, "image": "images/tv.jpg"},
+    {"id": "camera_2", "name": "Kodak Digital Camera", "price": 42000, "image": "images/camera2.jpg."},
+    {"id": "ps5", "name": "PS5", "price": 48000, "image": "images/ps5.jpg"},
+    {"id": "laptop2", "name": "Macbook Air M4", "price": 82000, "image": "images/laptop2.jpg"},
+    {"id": "laptop3", "name": "Lenovo Legion", "price": 111400, "image": "images/laptop3.jpg"},
+    {"id": "phone2", "name": "iPhone 17", "price": 89000, "image": "images/mobile2.jpg"},
+
+]
+>>>>>>> 79599da8dfd06174312c7eb974f936908d807ac7
 
         if not session.get("logged_in"):
             return redirect(url_for("login"))
