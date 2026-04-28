@@ -2,16 +2,15 @@ from flask import Flask, render_template, request, redirect, url_for, session
 from functools import wraps
 
 app = Flask(__name__)
-app.secret_key="simple-secret-key"
+app.secret_key = "simple-secret-key"
 
 
 PRODUCTS = [
-
-{"id": "laptop", "name": "ASUS Vivobook", "price": 45000, "image": "images/laptop1.jpg"},
+    {"id": "laptop", "name": "ASUS Vivobook", "price": 45000, "image": "images/laptop1.jpg"},
     {"id": "phone", "name": "Samsung Galaxy S26", "price": 18000, "image": "images/mobile1.jpg"},
     {"id": "camera", "name": "Sony AES Digital Camera", "price": 32000, "image": "images/camera1.jpg"},
-    {"id": "tv", "name" : "TCL 75inch LED", "price": 28000, "image": "images/tv.jpg"},
-    {"id": "camera_2", "name": "Kodak Digital Camera", "price": 42000, "image": "images/camera2.jpg."},
+    {"id": "tv", "name": "TCL 75inch LED", "price": 28000, "image": "images/tv.jpg"},
+    {"id": "camera_2", "name": "Kodak Digital Camera", "price": 42000, "image": "images/camera2.jpg"},
     {"id": "ps5", "name": "PS5", "price": 48000, "image": "images/ps5.jpg"},
     {"id": "laptop2", "name": "Macbook Air M4", "price": 82000, "image": "images/laptop2.jpg"},
     {"id": "laptop3", "name": "Lenovo Legion", "price": 111400, "image": "images/laptop3.jpg"},
@@ -55,9 +54,9 @@ def get_cart_items():
     cart = get_cart()
 
     for p in PRODUCTS:
-        q = cart.get(p["id"],0)
+        q = cart.get(p["id"], 0)
 
-        if q!=0:
+        if q:
             item = {}
             item.update(p)
             item["quantity"] = q
@@ -80,23 +79,23 @@ def get_recommendations(pid, limit=2):
 def login():
 
     if session.get("logged_in"):
-        return redirect("/products")
+        return redirect(url_for("products"))
 
     err = None
 
-    if request.method=="POST":
+    if request.method == "POST":
 
-        u = request.form.get("username","").strip()
-        p = request.form.get("password","").strip()
+        u = request.form.get("username", "").strip()
+        p = request.form.get("password", "").strip()
 
         if u and p:
-            session["logged_in"]=True
-            session["username"]=u
+            session["logged_in"] = True
+            session["username"] = u
 
             if "cart" not in session:
-                session["cart"]={}
+                session["cart"] = {}
 
-            return redirect("/products")
+            return redirect(url_for("products"))
 
         else:
             err = "Enter a username and password."
@@ -112,7 +111,7 @@ def login_old():
 @app.route("/logout", methods=["POST"])
 def logout():
     session.clear()
-    return redirect("/")
+    return redirect(url_for("login"))
 
 
 @app.route("/products")
@@ -121,7 +120,7 @@ def products():
     return render_template("products.html", products=PRODUCTS)
 
 
-@app.route("/add", methods=["POST"])
+@app.route("/add", methods=["POST"], endpoint="add_to_cart")
 @login_required
 def add():
 
@@ -131,16 +130,16 @@ def add():
         cart = get_cart()
 
         if pid in cart:
-            cart[pid]+=1
+            cart[pid] += 1
         else:
-            cart[pid]=1
+            cart[pid] = 1
 
         save_cart(cart)
 
-    return redirect("/products")
+    return redirect(url_for("products"))
 
 
-@app.route("/remove", methods=["POST"])
+@app.route("/remove", methods=["POST"], endpoint="remove_from_cart")
 @login_required
 def remove():
 
@@ -151,11 +150,11 @@ def remove():
         if cart[pid] > 1:
             cart[pid] = cart[pid] - 1
         else:
-            cart.pop(pid,None)
+            cart.pop(pid, None)
 
     save_cart(cart)
 
-    return redirect("/cart")
+    return redirect(url_for("cart"))
 
 
 @app.route("/cart")
@@ -174,18 +173,18 @@ def cart():
     return render_template("cart.html", cart_items=items, total=total)
 
 
-@app.route("/clear", methods=["POST"])
+@app.route("/clear", methods=["POST"], endpoint="clear_cart")
 @login_required
 def clear():
     save_cart({})
-    return redirect("/cart")
+    return redirect(url_for("cart"))
 
 
-# random route lol
 @app.route("/shrek")
+@login_required
 def shrek():
     return render_template("chatbot.html")
 
 
-if __name__=="__main__":
+if __name__ == "__main__":
     app.run(debug=True)
