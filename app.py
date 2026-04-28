@@ -7,12 +7,11 @@ app.secret_key = "simple-secret-key"
 
 
 PRODUCTS = [
-    {"id": "laptop", "name": "Laptop", "price": 45000, "image": "images/laptop1.jpg"},
-    {"id": "phone", "name": "Mobile Phone", "price": 18000, "image": "images/mobile1.jpg"},
-    {"id": "camera", "name": "Camera", "price": 32000, "image": "images/camera1.jpg"},
-    {"id": "tv", "name": "TV", "price": 28000, "image": "images/tv.jpg"},
-    {"id": "controller", "name": "Controller", "price": 3500, "image": "images/ps5controller.jpg"},
-    {"id": "charger", "name": "Charger", "price": 900, "image": "images/mobilecharger.jpg"},
+    {"id": "laptop", "name": "ASUS Vivobook", "price": 45000, "image": "images/laptop1.jpg"},
+    {"id": "phone", "name": "Samsung Galaxy S26", "price": 18000, "image": "images/mobile1.jpg"},
+    {"id": "camera", "name": "Sony AES Digital Camera", "price": 32000, "image": "images/camera1.jpg"},
+    {"id": "controller", "name": "PS5 Controller", "price": 3500, "image": "images/ps5controller.jpg"},
+    {"id": "charger", "name": "65W Type C Charger", "price": 900, "image": "images/mobilecharger.jpg"},
 ]
 
 
