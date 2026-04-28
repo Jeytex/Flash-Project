@@ -92,6 +92,12 @@ input {
     gap: 15px;
 }
 
+.cart-row {
+    display: grid;
+    gap: 15px;
+    grid-template-columns: minmax(280px, 1fr) minmax(280px, 1fr);
+}
+
 .cart-item {
     align-items: center;
     display: flex;
@@ -102,4 +108,34 @@ input {
     height: 90px;
     object-fit: cover;
     width: 90px;
+}
+
+.recommendations {
+    display: grid;
+    gap: 12px;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
+.recommendation-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    padding: 12px;
+}
+
+.recommendation-card img {
+    height: 90px;
+    object-fit: cover;
+    width: 100%;
+}
+
+.recommendation-card h3 {
+    font-size: 16px;
+    margin: 10px 0 6px;
+}
+
+@media (max-width: 760px) {
+    .cart-row {
+        grid-template-columns: 1fr;
+    }
 }

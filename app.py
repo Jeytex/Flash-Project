@@ -7,6 +7,7 @@ app.secret_key = "simple-secret-key"
 
 
 PRODUCTS = [
+
     {"id": "laptop", "name": "ASUS Vivobook", "price": 45000, "image": "images/laptop1.jpg"},
     {"id": "phone", "name": "Samsung Galaxy S26", "price": 18000, "image": "images/mobile1.jpg"},
     {"id": "camera", "name": "Sony AES Digital Camera", "price": 32000, "image": "images/camera1.jpg"},
@@ -17,6 +18,7 @@ PRODUCTS = [
     # {"id": "camera_lens", "name": "Camera Lens", "price": 21000, "image": "images/cameralens.jpg"},
     # {"id": "camera_pod", "name": "Tripod for DSLR Cameras", "price": 12000, "image": "images/camerapod.jpg"},
     {"id": "ps5", "name": "PS5", "price": 48000, "image": "images/ps5.jpg"},
+
 ]
 
 
@@ -56,6 +58,10 @@ def get_cart_items():
             })
 
     return items
+
+
+def get_recommendations(product_id, limit=2):
+    return [product for product in PRODUCTS if product["id"] != product_id][:limit]
 
 
 @app.route("/", methods=["GET", "POST"])
@@ -127,6 +133,9 @@ def remove_from_cart():
 @login_required
 def cart():
     cart_items = get_cart_items()
+    for item in cart_items:
+        item["recommendations"] = get_recommendations(item["id"])
+
     total = sum(item["total"] for item in cart_items)
     return render_template("cart.html", cart_items=cart_items, total=total)
 
@@ -137,6 +146,9 @@ def clear_cart():
     save_cart({})
     return redirect(url_for("cart"))
 
+@app.route("/shrek")
+def shrek():
+    return render_template("chatbot.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
