@@ -2,21 +2,118 @@
 {% set title = "Login" %}
 
 {% block content %}
-<section class="login-box">
-    <h1>Login</h1>
+<style>
+    .login-page {
+        min-height: calc(100vh - 60px);
+        display: grid;
+        place-items: center;
+        padding: 28px 0;
+        background:
+            radial-gradient(circle at 20% 20%, rgba(205, 92, 92, 0.18), transparent 28%),
+            linear-gradient(135deg, #fff7f4 0%, #f7fbff 52%, #fff 100%);
+    }
 
-    {% if error %}
-    <p class="error">{{ error }}</p>
-    {% endif %}
+    .login-card {
+        width: min(100%, 430px);
+        padding: 36px;
+        background: rgba(255, 255, 255, 0.92);
+        border: 1px solid rgba(205, 92, 92, 0.16);
+        border-radius: 18px;
+        box-shadow: 0 24px 60px rgba(35, 35, 35, 0.12);
+    }
 
-    <form method="post">
-        <label for="username">Username</label>
-        <input id="username" name="username" type="text" required>
+    .login-card h1 {
+        margin: 0 0 8px;
+        color: #171717;
+        font-size: 34px;
+        line-height: 1.1;
+    }
 
-        <label for="password">Password</label>
-        <input id="password" name="password" type="password" required>
+    .login-card p {
+        margin: 0 0 26px;
+        color: #666;
+    }
 
-        <button type="submit">Login</button>
-    </form>
+    .login-card label {
+        display: block;
+        margin: 0 0 7px;
+        color: #333;
+        font-weight: 700;
+        font-size: 14px;
+    }
+
+    .login-card input {
+        margin: 0 0 18px;
+        padding: 13px 14px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+        background: #fbfbfb;
+        font-size: 15px;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    }
+
+    .login-card input:focus {
+        outline: none;
+        border-color: indianred;
+        background: #fff;
+        box-shadow: 0 0 0 4px rgba(205, 92, 92, 0.14);
+    }
+
+    .login-card button {
+        width: 100%;
+        margin-top: 4px;
+        padding: 13px 18px;
+        border-radius: 10px;
+        font-weight: 700;
+        font-size: 15px;
+        box-shadow: 0 12px 22px rgba(205, 92, 92, 0.26);
+    }
+
+    .login-card .error {
+        margin: 0 0 18px;
+        padding: 11px 13px;
+        border-radius: 10px;
+        background: #fff1f1;
+        color: #b91c1c;
+        border: 1px solid #ffd0d0;
+        font-weight: 700;
+    }
+
+    @media (max-width: 540px) {
+        .login-page {
+            min-height: calc(100vh - 40px);
+            padding: 12px 0;
+        }
+
+        .login-card {
+            padding: 28px 22px;
+            border-radius: 14px;
+        }
+
+        .login-card h1 {
+            font-size: 29px;
+        }
+    }
+</style>
+
+<section class="login-page">
+    <div class="login-card">
+        <h1>Welcome back</h1>
+        <p>Sign in to continue shopping.</p>
+
+        {% if error %}
+        <p class="error">{{ error }}</p>
+        {% endif %}
+
+        <form method="post">
+            <label for="username">Username</label>
+            <input id="username" name="username" type="text" autocomplete="username" required>
+
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password" autocomplete="current-password" required>
+
+            <button type="submit">Login</button>
+        </form>
+    </div>
 </section>
 {% endblock %}
