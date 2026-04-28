@@ -1,8 +1,8 @@
-body{
-margin:0;
-font-family: Arial, Helvetica, sans-serif;
-background:white;
-color:#222;
+body {
+    margin: 0;
+    background: white;
+    color: #222;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 header{
@@ -136,4 +136,35 @@ font-size:16px;
 .cart-row{
 grid-template-columns:1fr;
 }
+}
+
+.chatbox{
+    background-color: white;
+    border-radius: 20px;
+    width: 500px;
+    height: 100%;
+    padding: 0px;  
+    padding-bottom: 10px;
+}
+
+.chathead{
+    background-color:green;
+    margin:0px;
+    padding: 10px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+    color:white;
+}
+
+.chatbody{
+    background-color: lightgray;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 20px;
+    margin:20px;
+    padding: 3px;
+    align-items: left;
 }
