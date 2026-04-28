@@ -37,7 +37,7 @@ def cart_items():
     return items
 
 
-<<<<<<< HEAD
+
 def get_cart_total():
     total = 0
 
