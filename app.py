@@ -18,8 +18,10 @@ PRODUCTS = [
     {"id": "camera_lens", "name": "Camera Lens", "price": 21000, "image": "images/cameralens.jpg"},
     {"id": "camera_pod", "name": "Tripod for DSLR Cameras", "price": 12000, "image": "images/camerapod.jpg"},
     {"id": "ps5", "name": "PS5", "price": 48000, "image": "images/ps5.jpg"},
+    {"id": "laptop2", "name": "Macbook Air M4", "price": 82000, "image": "images/laptop2.jpg"},
+    {"id": "laptop3", "name": "Lenovo Legion", "price": 111400, "image": "images/laptop3.jpg"},
+]   
 
-]
 
 
 def login_required(view):
