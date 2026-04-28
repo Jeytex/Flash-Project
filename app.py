@@ -98,8 +98,7 @@ def clear_cart():
 
 
 @app.route("/recommendations")
-=======
->>>>>>> 37e4956 (commit)
+
 def recommendations():
     cart = session.get("cart", [])
     suggestions = []
