@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% set title = "Cart" %}
+
+{% block content %}
+<section class="center-text">
+    <h1>Your Cart</h1>
+    <p>Items you add from the products page will show here.</p>
+</section>
+
+<section class="simple-grid">
+    {% if cart_items %}
+        {% for item in cart_items %}
+        <div class="box item-card">
+            <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.name }}">
+            <div>
+                <h2>{{ item.name }}</h2>
+                <p>Quantity: {{ item.count }}</p>
+                <p>Item total: Rs. {{ item.total }}</p>
+            </div>
+        </div>
+        {% endfor %}
+
+        <div class="box total-box">
+            <h2>Cart Total</h2>
+            <p class="price">Rs. {{ total }}</p>
+            <form action="{{ url_for('clear_cart') }}" method="POST">
+                <button type="submit">Clear Cart</button>
+            </form>
+        </div>
+    {% else %}
+        <div class="box empty-box">
+            <h2>Your cart is empty</h2>
+            <p>Add products first to build your cart.</p>
+            <a class="button" href="{{ url_for('products') }}">Go to Products</a>
+        </div>
+    {% endif %}
+</section>
+{% endblock %}

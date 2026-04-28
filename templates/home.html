@@ -1,7 +1,23 @@
-<!DOCTYPE html>
-<html>
-    <head> 
-        <title>Home Page</title>
-                <link rel="stylesheet" type="text/css" href="E:\Develpoment\Flash-Project\static\style.css">
-    </head>
-</html>
+{% extends "base.html" %}
+{% set title = "Home" %}
+
+{% block content %}
+<section class="hero">
+    <div class="box hero-box">
+        <div class="logo-spot">
+            <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+        </div>
+
+        <h1>Beautiful Himanshus for Everyday Shopping</h1>
+        <p>Shop simple, pretty Himanshus with easy recommendations.</p>
+
+        <div class="button-row">
+            <a class="button" href="{{ url_for('products') }}">Shop Products</a>
+            <a class="button button-light" href="{{ url_for('recommendations') }}">Recommendations</a>
+            <a class="button button-light" href="{{ url_for('login') }}">Login</a>
+        </div>
+    </div>
+
+    <img class="hero-image" src="{{ url_for('static', filename='images/blackguy.png') }}" alt="Logo">
+</section>
+{% endblock %}
