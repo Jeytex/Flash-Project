@@ -12,6 +12,7 @@ PRODUCTS = [
     {"id": "camera", "name": "Sony AES Digital Camera", "price": 32000, "image": "images/camera1.jpg"},
     {"id": "controller", "name": "PS5 Controller", "price": 3500, "image": "images/ps5controller.jpg"},
     {"id": "charger", "name": "65W Type C Charger", "price": 900, "image": "images/mobilecharger.jpg"},
+    {"id": "tv", "name" : "TCL 75inch LED", "price": 28000, "image": "images/tv.jpg"},
 ]
 
 
