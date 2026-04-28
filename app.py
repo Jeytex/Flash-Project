@@ -7,6 +7,7 @@ app.secret_key = "simple-secret-key"
 
 PRODUCTS = [
     {"id": "laptop", "name": "ASUS Vivobook", "price": 45000, "image": "images/laptop1.jpg"},
+    
     {"id": "phone", "name": "Samsung Galaxy S26", "price": 18000, "image": "images/mobile1.jpg"},
     {"id": "camera", "name": "Sony AES Digital Camera", "price": 32000, "image": "images/camera1.jpg"},
     {"id": "tv", "name": "TCL 75inch LED", "price": 28000, "image": "images/tv.jpg"},

@@ -1,53 +1,51 @@
 {% extends "base.html" %}
-{% set title = "Cart" %}
-
 {% block content %}
+
 <h1>Cart</h1>
 
 {% if cart_items %}
-<section class="cart">
-    {% for item in cart_items %}
-    <div class="cart-row">
-        <article class="cart-item">
-            <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.name }}">
-            <div>
-                <h2>{{ item.name }}</h2>
-                <p>Quantity: {{ item.quantity }}</p>
-                <p>Total: Rs. {{ item.total }}</p>
-                <form action="{{ url_for('remove_from_cart') }}" method="post">
-                    <input type="hidden" name="product" value="{{ item.id }}">
-                    <button type="submit">Remove One</button>
-                </form>
-            </div>
-        </article>
 
-        <section class="recommendations" aria-label="Recommended products">
-            {% for recommendation in item.recommendations %}
-            <article class="recommendation-card">
-                <img src="{{ url_for('static', filename=recommendation.image) }}" alt="{{ recommendation.name }}">
-                <div>
-                    <h3>{{ recommendation.name }}</h3>
-                    <p>Rs. {{ recommendation.price }}</p>
+    {% for item in cart_items %}
+        <div class="cart-item">
+            <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.name }}">
+            
+            <h2>{{ item.name }}</h2>
+            <p>Qty: {{ item.quantity }}</p>
+            <p>Rs. {{ item.total }}</p>
+
+            <form action="{{ url_for('remove_from_cart') }}" method="post">
+                <input type="hidden" name="product" value="{{ item.id }}">
+                <button>Remove</button>
+            </form>
+
+            <!-- Recommendations -->
+            {% for rec in item.recommendations %}
+                <div class="rec-item">
+                    <img src="{{ url_for('static', filename=rec.image) }}" alt="{{ rec.name }}">
+                    <p>{{ rec.name }} - Rs. {{ rec.price }}</p>
+
                     <form action="{{ url_for('add_to_cart') }}" method="post">
-                        <input type="hidden" name="product" value="{{ recommendation.id }}">
-                        <button type="submit">Add</button>
+                        <input type="hidden" name="product" value="{{ rec.id }}">
+                        <button>Add</button>
                     </form>
                 </div>
-            </article>
             {% endfor %}
-        </section>
-    </div>
-    {% endfor %}
-</section>
 
-<section class="cart-total">
+        </div>
+        <hr>
+    {% endfor %}
+
     <h2>Total: Rs. {{ total }}</h2>
+
     <form action="{{ url_for('clear_cart') }}" method="post">
-        <button type="submit">Clear Cart</button>
+        <button>Clear Cart</button>
     </form>
-</section>
+
 {% else %}
-<p>Your cart is empty.</p>
-<a class="button" href="{{ url_for('products') }}">Go to Products</a>
+
+    <p>Your cart is empty.</p>
+    <a href="{{ url_for('products') }}">Go to Products</a>
+
 {% endif %}
+
 {% endblock %}
