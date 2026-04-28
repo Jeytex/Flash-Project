@@ -19,7 +19,7 @@ PRODUCTS = [
 
     {
         "id": "phone",
-        "name": "Samsung Galaxy S26",
+        "name": "Samsung Galaxy",
         "price": 18000,
         "image": "images/mobile1.jpg",
         "recommendations": [
@@ -30,7 +30,7 @@ PRODUCTS = [
 
     {
         "id": "camera",
-        "name": "Sony AES Digital Camera",
+        "name": "Sony Camera",
         "price": 32000,
         "image": "images/camera1.jpg",
         "recommendations": [
