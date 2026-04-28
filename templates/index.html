@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shopping Market</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="site-header">
+        <a class="brand" href="/">
+            <img src="https://placehold.co/80x80/ffffff/cd5c5c?text=SM" alt="Shopping Market logo">
+            <span>Shopping Market</span>
+        </a>
+
+        <nav class="nav-links">
+            <a href="/">Home</a>
+            <a href="/?page=products">Products</a>
+            <a href="/?page=cart">Cart</a>
+            <a href="/?page=recommendations">Recommendations</a>
+            <a href="/?page=login">Login</a>
+        </nav>
+    </header>
+
+    <main class="page">
+        {% if page == "products" %}
+            <section class="center-text">
+                <h1>Products</h1>
+                <p>Choose from 9 Products. Each Product has add and remove cart buttons.</p>
+            </section>
+
+            <section class="product-grid">
+                {% for product in products %}
+                    <div class="box product-card">
+                        <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}">
+                        <h2>{{ product.name }}</h2>
+                        <p class="price">Rs. {{ product.price }}</p>
+
+                        <div class="button-row">
+                            <form action="/?page=products" method="POST">
+                                <input type="hidden" name="page" value="products">
+                                <input type="hidden" name="action" value="add">
+                                <input type="hidden" name="product" value="{{ product.id }}">
+                                <button type="submit">Add to Cart</button>
+                            </form>
+
+                            <form action="/?page=products" method="POST">
+                                <input type="hidden" name="page" value="products">
+                                <input type="hidden" name="action" value="remove">
+                                <input type="hidden" name="product" value="{{ product.id }}">
+                                <button class="button-light" type="submit">Remove</button>
+                            </form>
+                        </div>
+                    </div>
+                {% endfor %}
+            </section>
+
+            <div class="center-text page-actions">
+                <a class="button" href="/?page=cart">View Cart</a>
+                <a class="button button-light" href="/?page=recommendations">See Recommendations</a>
+            </div>
+        {% elif page == "cart" %}
+            <section class="center-text">
+                <h1>Your Cart</h1>
+                <p>Items you add from the products page will show here.</p>
+            </section>
+
+            <section class="simple-grid">
+                {% if cart_items %}
+                    {% for item in cart_items %}
+                        <div class="box item-card">
+                            <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.name }}">
+                            <div>
+                                <h2>{{ item.name }}</h2>
+                                <p>Quantity: {{ item.quantity }}</p>
+                                <p>Item total: Rs. {{ item.line_total }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+
+                    <div class="box total-box">
+                        <h2>Cart Total</h2>
+                        <p class="price">Rs. {{ cart_total }}</p>
+                        <form action="/?page=cart" method="POST">
+                            <input type="hidden" name="page" value="cart">
+                            <input type="hidden" name="action" value="clear">
+                            <button type="submit">Clear Cart</button>
+                        </form>
+                    </div>
+                {% else %}
+                    <div class="box empty-box">
+                        <h2>Your cart is empty</h2>
+                        <p>Add products first to build your cart.</p>
+                        <a class="button" href="/?page=products">Go to Products</a>
+                    </div>
+                {% endif %}
+            </section>
+        {% elif page == "recommendations" %}
+            <section class="center-text">
+                <h1>Recommended For You</h1>
+                <p>Simple product ideas based on what you added to your cart.</p>
+            </section>
+
+            <section class="simple-grid">
+                {% if suggestions %}
+                    {% for item in suggestions %}
+                        <div class="box recommendation-card">
+                            <img src="{{ url_for('static', filename=item.image) }}" alt="{{ item.name }}">
+                            <h2>Since you added {{ item.because }}, we recommend {{ item.name }}.</h2>
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="box empty-box">
+                        <h2>No recommendations yet</h2>
+                        <p>Add an item to your cart and come back here.</p>
+                        <a class="button" href="/?page=products">Shop Products</a>
+                    </div>
+                {% endif %}
+            </section>
+        {% elif page == "login" %}
+            <section class="login-section">
+                <form class="box login-box">
+                    <h1>Login</h1>
+                    <p>Enter your details to continue shopping.</p>
+
+                    <label for="username">Username or Email</label>
+                    <input id="username" type="email" placeholder="you@example.com">
+
+                    <label for="password">Password</label>
+                    <input id="password" type="password" placeholder="Password">
+
+                    <button type="submit">Login</button>
+                </form>
+            </section>
+        {% else %}
+            <section class="hero">
+                <div class="box hero-box">
+                    <div class="logo-spot">
+                        <img src="{{ url_for('static', filename='images/logo.png') }}" alt="Logo">
+                    </div>
+
+                    <h1>Beautiful Shopping for Everyday Shopping</h1>
+                    <p>Shop simple, pretty Shopping with easy recommendations.</p>
+
+                    <div class="button-row">
+                        <a class="button" href="/?page=products">Shop Products</a>
+                        <a class="button button-light" href="/?page=recommendations">Recommendations</a>
+                        <a class="button button-light" href="/?page=login">Login</a>
+                    </div>
+                </div>
+
+                <img class="hero-image" src="{{ url_for('static', filename='images/blackguy.png') }}" alt="Logo">
+            </section>
+        {% endif %}
+    </main>
+</body>
+</html>
