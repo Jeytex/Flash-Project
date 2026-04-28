@@ -37,12 +37,13 @@ a {
 
 button,
 .button {
-    background: #1d4ed8;
+    background: indianred;
     border: 0;
     color: white;
     cursor: pointer;
     display: inline-block;
     padding: 9px 14px;
+    border-radius: 12px;
 }
 
 input {
