@@ -121,10 +121,6 @@ def get_cart_items():
     return cart_items
 
 
-<<<<<<< HEAD
-=======
-
->>>>>>> aaf49cac3e4c88eae2ccfc5ea1a5095e1d48f90f
 def get_cart_total():
     total = 0
 
@@ -136,11 +132,7 @@ def get_cart_total():
 
 @app.route("/")
 def home():
-<<<<<<< HEAD
     return render_template("home.html")
-=======
-    return render_template("index.html")
->>>>>>> aaf49cac3e4c88eae2ccfc5ea1a5095e1d48f90f
 
 
 @app.route("/products")
@@ -189,10 +181,6 @@ def clear_cart():
 
 
 @app.route("/recommendations")
-<<<<<<< HEAD
-=======
-
->>>>>>> aaf49cac3e4c88eae2ccfc5ea1a5095e1d48f90f
 def recommendations():
     suggestions = []
 
