@@ -11,16 +11,14 @@ PRODUCTS = [
     {"id": "laptop", "name": "ASUS Vivobook", "price": 45000, "image": "images/laptop1.jpg"},
     {"id": "phone", "name": "Samsung Galaxy S26", "price": 18000, "image": "images/mobile1.jpg"},
     {"id": "camera", "name": "Sony AES Digital Camera", "price": 32000, "image": "images/camera1.jpg"},
-    {"id": "controller", "name": "PS5 Controller", "price": 3500, "image": "images/ps5controller.jpg"},
-    {"id": "charger", "name": "65W Type C Charger", "price": 900, "image": "images/mobilecharger.jpg"},
     {"id": "tv", "name" : "TCL 75inch LED", "price": 28000, "image": "images/tv.jpg"},
     {"id": "camera_2", "name": "Kodak Digital Camera", "price": 42000, "image": "images/camera2.jpg."},
-    {"id": "camera_lens", "name": "Camera Lens", "price": 21000, "image": "images/cameralens.jpg"},
-    {"id": "camera_pod", "name": "Tripod for DSLR Cameras", "price": 12000, "image": "images/camerapod.jpg"},
     {"id": "ps5", "name": "PS5", "price": 48000, "image": "images/ps5.jpg"},
+    {"id": "laptop2", "name": "Macbook Air M4", "price": 82000, "image": "images/laptop2.jpg"},
+    {"id": "laptop3", "name": "Lenovo Legion", "price": 111400, "image": "images/laptop3.jpg"},
+    {"id": "phone2", "name": "iPhone 17", "price": 89000, "image": "images/mobile2.jpg"},
 
 ]
-
 
 def login_required(view):
     @wraps(view)
