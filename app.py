@@ -139,6 +139,9 @@ def clear_cart():
     save_cart({})
     return redirect(url_for("cart"))
 
+@app.route("/shrek")
+def shrek():
+    return render_template("chatbot.html")
 
 if __name__ == "__main__":
     app.run(debug=True)
