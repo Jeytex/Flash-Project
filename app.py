@@ -16,7 +16,6 @@ PRODUCTS = [
             {"name": "Laptop Stand", "image": "images/laptopstand.jpg"}
         ]
     },
-
     {
         "id": "phone",
         "name": "Samsung Galaxy",
@@ -27,7 +26,6 @@ PRODUCTS = [
             {"name": "Earphones", "image": "images/mobileearphones.jpg"}
         ]
     },
-
     {
         "id": "camera",
         "name": "Sony Camera",
@@ -38,7 +36,6 @@ PRODUCTS = [
             {"name": "Camera Pod", "image": "images/camerapod.jpg"}
         ]
     },
-
     {
         "id": "tv",
         "name": "TCL 75inch LED",
