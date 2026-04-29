@@ -3,7 +3,10 @@
 
 {% block content %}
 
-<h1 style="color: white;"> Products </h1>
+<div class="page-heading">
+    <p>Qubit x Store</p>
+    <h1>Products</h1>
+</div>
 
 <section class="products">
 
@@ -11,23 +14,23 @@
 
     <article class="card">
 
-    <img src="{{ url_for('static', filename=product.image) }}"  alt="{{product.name}}">
+        <img src="{{ url_for('static', filename=product.image) }}" alt="{{ product.name }}">
 
-        <h2>
-            {{ product.name }}
-        </h2>
+        <div class="card-body">
+            <h2>{{ product.name }}</h2>
 
-    <p> Rs. {{product.price}} </p>
+            <p class="price">Rs. {{ product.price }}</p>
 
-        <form action="{{url_for('add_to_cart')}}" method="post">
+            <form action="{{ url_for('add_to_cart') }}" method="post">
 
-            <input type="hidden" name="product" value="{{product.id}}">
+                <input type="hidden" name="product" value="{{ product.id }}">
 
-        <button type="submit">
-            Add to Cart
-        </button>
+                <button type="submit">
+                    Add to Cart
+                </button>
 
-        </form>
+            </form>
+        </div>
 
     </article>
 

@@ -1,7 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1 style="color: white;">Cart</h1>
+<div class="page-heading">
+    <p>Shopping Cart</p>
+    <h1>Cart</h1>
+</div>
 
 {% if cart_items %}
 
@@ -13,8 +16,10 @@
 
                     <div class="cart-details">
                         <h2>{{ item.name }}</h2>
-                        <p>Qty: {{ item.quantity }}</p>
-                        <p>Rs. {{ item.total }}</p>
+                        <div class="cart-meta">
+                            <span>Qty: {{ item.quantity }}</span>
+                            <strong>Rs. {{ item.total }}</strong>
+                        </div>
 
                         <form action="{{ url_for('remove_from_cart') }}" method="post">
                             <input type="hidden" name="product" value="{{ item.id }}">
@@ -39,16 +44,24 @@
         {% endfor %}
     </section>
 
-    <h2>Total: Rs. {{ total }}</h2>
+    <section class="cart-total">
+        <div>
+            <p>Total</p>
+            <h2>Rs. {{ total }}</h2>
+        </div>
 
-    <form action="{{ url_for('clear_cart') }}" method="post">
-        <button type="submit">Clear Cart</button>
-    </form>
+        <form action="{{ url_for('clear_cart') }}" method="post">
+            <button type="submit">Clear Cart</button>
+        </form>
+    </section>
 
 {% else %}
 
-    <p>Your cart is empty.</p>
-    <a href="{{ url_for('products') }}">Go to Products</a>
+    <section class="empty-state">
+        <h2>Your cart is empty.</h2>
+        <p>Add a product to start building your order.</p>
+        <a class="button" href="{{ url_for('products') }}">Go to Products</a>
+    </section>
 
 {% endif %}
 
