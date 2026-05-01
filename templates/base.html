@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
 </head>
 
-<body>
+<body class="{% block body_class %}{% endblock %}">
     {% if session.get("logged_in") %}
     <header>
         <a href="{{ url_for('products') }}" class="brand-logo">Qubit x Store</a>
