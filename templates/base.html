@@ -14,9 +14,9 @@
 <body>
     {% if session.get("logged_in") %}
     <header>
-        <a href="https://presentation-website-40ie.onrender.com/" class="brand-logo">Qubit x Store</a>
+        <a href="{{ url_for('products') }}" class="brand-logo">Qubit x Store</a>
         <nav>
-            <a href="{{ url_for('products') }}">Our Products</a>
+            <a href="https://presentation-website-40ie.onrender.com/">Our Presentation</a>
             <a href="{{ url_for('cart') }}">Cart</a>
             <a href="{{ url_for('shrek') }}">Shrek AI</a>
             <form action="{{ url_for('logout') }}" method="post">
